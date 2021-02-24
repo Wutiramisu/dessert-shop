@@ -133,10 +133,6 @@ export default {
         font-size: 2.5rem;
       }
     }
-
-    &--price {
-
-    }
   }
 
   &__info {
