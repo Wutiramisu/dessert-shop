@@ -11,6 +11,7 @@
           <label class="form__label" for="password">Password</label>
           <input class="form__input" v-model="password" type="password" id="password">
           <div class="form__msg" :class="{ 'form__msg--loop': msgAnimation, 'form__msg--first': errMsg }">Try Again</div>
+          <Spinner v-if="spinnerShow" />
           <div class="form__btn">
             <button class="form__btn--login" @click.prevent="login">Login</button>
             <button class="form__btn--register" @click.prevent="register">Register</button>
@@ -22,14 +23,17 @@
 </template>
 
 <script>
+import Spinner from '@/components/utils/Spinner.vue';
 export default {
+  components: { Spinner },
   name: 'LoginDialog',
   data () {
     return {
       username: '',
       password: '',
       errMsg: false,
-      msgAnimation: false
+      msgAnimation: false,
+      spinnerShow: false
     };
   },
   computed: {
@@ -51,11 +55,14 @@ export default {
       // 因為組件掛載在全域，所以關掉的時候要將狀態重置，避免下次打開直接觸發動畫
       this.errMsg = false;
       this.msgAnimation = false;
+      this.spinnerShow = false;
     },
     login () {
+      this.spinnerShow = true;
       this.$store.dispatch('login', { username: this.username, password: this.password });
     },
     register () {
+      this.spinnerShow = true;
       this.$store.dispatch('register', { username: this.username, password: this.password });
     }
   },
@@ -70,10 +77,11 @@ export default {
         this.$store.commit('clearErrMag');
         this.close();
         const samePage = this.$router.currentRoute === this.$router.originTo;
-        if (!samePage) {
-          this.$router.push(this.$router.originTo);
-        }
+        if (!samePage) this.$router.push(this.$router.originTo);
       }
+    },
+    msgAnimation (newValue) {
+      if (newValue) this.spinnerShow = false;
     }
   }
 };

@@ -1,7 +1,8 @@
 <template>
   <div class="order__container">
     <div class="order__title">Orders</div>
-    <div v-for="order in getOrder" :key="order._id" class="order__card">
+    <Spinner v-if="spinnerShow" />
+    <div v-else v-for="order in getOrder" :key="order._id" class="order__card">
       <div class="card__title">
         <span class="card__title--text">Tracking</span>
         <span class="card__title--num">{{ order._id }}</span>
@@ -32,7 +33,14 @@
 </template>
 
 <script>
+import Spinner from '@/components/utils/Spinner.vue';
 export default {
+  components: { Spinner },
+  data () {
+    return {
+      spinnerShow: true
+    };
+  },
   computed: {
     userInfo () {
       return this.$store.getters.userInfo;
@@ -47,6 +55,11 @@ export default {
       token: this.userInfo.token
     };
     this.$store.dispatch('getOrder', payload);
+  },
+  watch: {
+    getOrder () {
+      this.spinnerShow = false;
+    }
   }
 };
 </script>

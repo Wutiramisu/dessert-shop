@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const apiUrl = 'http://localhost:3000/order';
-const apiUrl = 'https://polar-peak-66663.herokuapp.com/order';
+const apiUrl = 'http://localhost:3000/order';
+// const apiUrl = 'https://polar-peak-66663.herokuapp.com/order';
 
 export default {
   state: {
@@ -30,7 +30,9 @@ export default {
     },
     getOrder (context, payload) {
       axios.get(`${apiUrl}/${payload.username}`, { headers: { Authorization: `Bearer ${payload.token}` } })
-        .then((res) => context.commit('getOrder', res.data))
+        .then((res) => {
+          context.commit('getOrder', res.data);
+        })
         .catch((err) => console.log('catchError: ', err));
     }
   },

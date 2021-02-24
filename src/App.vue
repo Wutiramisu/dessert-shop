@@ -13,7 +13,7 @@
 <script>
 import TheHeader from '@/views/TheHeader.vue';
 import TheFooter from '@/views/TheFooter.vue';
-import GoToTop from '@/components/GoToTop.vue';
+import GoToTop from '@/components/utils/GoToTop.vue';
 import CartIcon from '@/components/shopCart/CartIcon.vue';
 import ProductDialog from '@/components/product/ProductDialog.vue';
 import LoginDialog from '@/components/user/LoginDialog.vue';
