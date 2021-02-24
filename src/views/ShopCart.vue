@@ -79,7 +79,7 @@ export default {
   },
   methods: {
     loginDialog () {
-      this.$store.commit('loginDialogToggle');
+      this.$store.commit('openLoginDialog');
     },
     infoValidate () {
       const validation =
