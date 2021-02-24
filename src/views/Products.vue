@@ -1,41 +1,41 @@
 <template>
   <div class="products">
     <div class="products__category">
-      <h3 class="products__list-title">Products</h3>
-      <ul class="products__list">
+      <h3 class="products__category--title">Products</h3>
+      <ul>
         <li
-          @click="showAll"
-          class="list-item--all"
+          @click="productFilter('all')"
+          class="products__category--name"
           :class="active === 'all' ? 'active' : ''"
         >
         All
         </li>
         <li
-          @click="showCakes"
-          class="list-item--cake"
+          @click="productFilter('cake')"
+          class="products__category--name"
           :class="active === 'cake' ? 'active' : ''"
         >
         Cakes
         </li>
         <li
-          @click="showDonuts"
-          class="list-item--donut"
+          @click="productFilter('donut')"
+          class="products__category--name"
           :class="active === 'donut' ? 'active' : ''"
         >
         Donuts
         </li>
         <li
-          @click="showIceCream"
-          class="list-item--iceCream"
+          @click="productFilter('iceCream')"
+          class="products__category--name"
           :class="active === 'iceCream' ? 'active' : ''"
         >
         Ice Cream
         </li>
       </ul>
     </div>
-    <div class="products__item">
+    <div class="products__items">
       <ProdcutCard
-        v-for="product in productFilter"
+        v-for="product in filterList"
         :key="product.name"
         :product="product"
       />
@@ -49,49 +49,28 @@ export default {
   components: { ProdcutCard },
   data () {
     return {
-      products: [],
-      productFilter: [],
+      filterList: [],
       active: null
     };
   },
+  computed: {
+    getProducts () {
+      return this.$store.getters.getProducts;
+    }
+  },
   methods: {
-    async init () {
-      this.products = await this.$store.getters.getProducts;
-      this.active = this.$route.query.product;
-      switch (this.$route.query.product) {
-      case 'cake':
-        this.showCakes();
-        break;
-      case 'donut':
-        this.showDonuts();
-        break;
-      case 'iceCream':
-        this.showIceCream();
-        break;
-      default:
-        this.showAll();
-        break;
+    productFilter (query = 'all') {
+      if (query === 'all') {
+        this.filterList = this.getProducts;
+      } else {
+        this.filterList = this.getProducts.filter(val => val.category === query);
       }
-    },
-    showAll () {
-      this.productFilter = this.products;
-      this.active = 'all';
-    },
-    showCakes () {
-      this.productFilter = this.products.filter(val => val.category === 'cake');
-      this.active = 'cake';
-    },
-    showDonuts () {
-      this.productFilter = this.products.filter(val => val.category === 'donut');
-      this.active = 'donut';
-    },
-    showIceCream () {
-      this.productFilter = this.products.filter(val => val.category === 'iceCream');
-      this.active = 'iceCream';
+      this.active = query;
     }
   },
   mounted () {
-    this.init();
+    this.active = this.$route.query.product;
+    this.productFilter(this.active);
   }
 };
 </script>
@@ -102,37 +81,34 @@ export default {
   max-width: 140rem;
   margin: 0 auto;
   margin-top: 10rem;
-  // padding: 10rem 0;
-
   display: flex;
 
   &__category {
     flex: 1;
-
     font-family: 'Montserrat';
     font-size: 2.5rem;
     font-style: italic;
     color: var(--color-primary-dark);
     padding-right: 5rem;
-  }
 
-  &__list-title {
-    margin-bottom: 2rem;
-  }
+    &--title {
+      margin-bottom: 2rem;
+    }
 
-  &__list li{
-    padding: .5rem 1rem ;
-    border-bottom: .1rem solid var(--color-primary-dark);
-    transition: .2s linear;
+    &--name {
+      padding: .5rem 1rem ;
+      border-bottom: .1rem solid var(--color-primary-dark);
+      transition: .2s linear;
 
-    &:hover {
-      cursor: pointer;
-      background-color: var(--color-primary-light);
-      color: var(--color-secondary);
+      &:hover {
+        cursor: pointer;
+        background-color: var(--color-primary-light);
+        color: var(--color-secondary);
+      }
     }
   }
 
-  &__item {
+  &__items {
     margin-bottom: 3rem;
     flex: 3;
     display: grid;
