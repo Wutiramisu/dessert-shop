@@ -1,8 +1,9 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import store from '@/store';
+import Home from '../views/Home.vue';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
@@ -11,19 +12,42 @@ const routes = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+    path: '/products',
+    component: () => import('../views/Products.vue')
+  },
+  {
+    path: '/cart',
+    component: () => import('../views/ShopCart.vue')
+  },
+  {
+    path: '/order',
+    component: () => import('@/views/Order.vue'),
+    meta: { requiresAuth: true }
+  },
+  { path: '/:PageNotFound(.*)', redirect: '/' }
+];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+  originTo: ''
+});
 
-export default router
+router.beforeEach((to, from, next) => {
+  router.originTo = to; // 原始要去的路徑存至全域，元件就能調用
+  window.scrollTo(0, 0);
+
+  if (to.meta.requiresAuth) {
+    if (store.getters.isLogin) {
+      return next();
+    }
+    store.commit('openLoginDialog');
+    // console.log('請先登入');
+    next(from);
+  } else {
+    next();
+  }
+});
+
+export default router;

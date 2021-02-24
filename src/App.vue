@@ -1,32 +1,36 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div class="container">
+    <TheHeader />
+    <router-view class="main"/>
+    <ProductDialog />
+    <LoginDialog />
+    <CartIcon />
+    <GoToTop />
+    <TheFooter />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import TheHeader from '@/views/TheHeader.vue';
+import TheFooter from '@/views/TheFooter.vue';
+import GoToTop from '@/components/GoToTop.vue';
+import CartIcon from '@/components/shopCart/CartIcon.vue';
+import ProductDialog from '@/components/product/ProductDialog.vue';
+import LoginDialog from '@/components/user/LoginDialog.vue';
+export default {
+  components: { TheHeader, TheFooter, GoToTop, CartIcon, ProductDialog, LoginDialog }
+};
+</script>
+
+<style lang="scss" scoped>
+.container {
+  min-height: 100vh;
+  background: var(--color-secondary) url(./assets/banner-2.png);
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.main {
+  width: 80%;
+  max-width: 140rem;
+  margin: 0 auto;
+  padding-bottom: 25rem;
 }
 </style>

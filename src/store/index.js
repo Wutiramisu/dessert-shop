@@ -1,15 +1,18 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-Vue.use(Vuex)
+import products from './products/index.js';
+import shopCart from './shopCart/index.js';
+import user from './user/index.js';
+import order from './order/index.js';
+
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
+    products,
+    shopCart,
+    user,
+    order
   }
-})
+});

@@ -1,0 +1,65 @@
+:root {
+  // --color-primary-light: #c69963;
+  --color-primary-light: rgb(198, 153, 99);
+  // --color-primary-dark: #B28451;
+  --color-primary-dark: rgb(178, 132, 81);
+  // --color-secondary: #101d2c;
+  --color-secondary: rgb(16, 29, 44);
+
+  // RESPONSIVE BREAKPOINTS
+  --bp-largest: 75em;   // 1200px
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+
+  position: relative;
+}
+
+body {
+  font-family: 'Parisienne', 'Microsoft JhengHei', sans-serif;
+}
+
+a {
+  &:link,
+  &:visited {
+    color: currentColor;
+    text-decoration: none;
+  }
+}
+
+button {
+  border: none;
+  outline: none;
+  background: none;
+  color: inherit;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none !important;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+ul {
+  list-style-type: none;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
