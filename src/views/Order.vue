@@ -1,6 +1,6 @@
 <template>
   <div class="order__container">
-    <div class="order__title">Orders</div>
+    <div class="order__title">{{ orderTitle }}</div>
     <Spinner v-if="spinnerShow" />
     <div v-else v-for="order in getOrder" :key="order._id" class="order__card">
       <div class="card__title">
@@ -38,7 +38,8 @@ export default {
   components: { Spinner },
   data () {
     return {
-      spinnerShow: true
+      spinnerShow: true,
+      orderTitle: ''
     };
   },
   computed: {
@@ -59,6 +60,11 @@ export default {
   watch: {
     getOrder () {
       this.spinnerShow = false;
+      if (this.getOrder.length === 0) {
+        this.orderTitle = 'There is no orders';
+      } else {
+        this.orderTitle = 'Orders';
+      }
     }
   }
 };

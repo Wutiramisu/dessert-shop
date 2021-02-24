@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <TheHeader />
-    <router-view class="main"/>
+    <transition>
+      <router-view class="main"/>
+    </transition>
     <ProductDialog />
     <LoginDialog />
     <CartIcon />
@@ -27,10 +29,30 @@ export default {
   min-height: 100vh;
   background: var(--color-secondary) url(./assets/banner-2.png);
 }
+
 .main {
   width: 80%;
   max-width: 140rem;
   margin: 0 auto;
   padding-bottom: 25rem;
 }
+
+.v-enter-active {
+  transition: opacity 1.2s;
+}
+.v-leave-active {
+  transition: opacity .2s;
+}
+.v-enter {
+  opacity: 0;
+}
+.v-leave-to {
+  opacity: 0;
+}
+// .fade-enter-active, .fade-leave-active {
+//   transition: opacity .3s;
+// }
+// .fade-enter, .fade-leave-to {
+//   opacity: 0;
+// }
 </style>
