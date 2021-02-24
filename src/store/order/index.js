@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const apiUrl = 'http://localhost:3000/order';
-// const apiUrl = 'https://polar-peak-66663.herokuapp.com/order';
+// const apiUrl = 'http://localhost:3000/order';
+const apiUrl = 'https://polar-peak-66663.herokuapp.com/order';
 
 export default {
   state: {

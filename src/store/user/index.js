@@ -1,8 +1,8 @@
 import axios from 'axios';
 import router from '@/router/index.js';
 
-const apiUrl = 'http://localhost:3000/user';
-// const apiUrl = 'https://polar-peak-66663.herokuapp.com/user';
+// const apiUrl = 'http://localhost:3000/user';
+const apiUrl = 'https://polar-peak-66663.herokuapp.com/user';
 
 export default {
   state: {
