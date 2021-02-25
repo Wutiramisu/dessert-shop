@@ -7,6 +7,7 @@
     <dialog v-if="getDialogState" class="dialog" open>
       <div class="dialog__container">
         <div class="dialog__title">{{ product.name }}</div>
+
         <div class="dialog__main">
           <div class="dialog__top">
             <img
@@ -15,17 +16,21 @@
             class="dialog__top--img"
             >
           </div>
-
           <div class="dialog__bottom">
-            <p class="dialog__bottom--desc">Lorem ipsum dolor sit amet consectetur. Nisi praesentium dolorem nemo, eaque nostrum.</p>
+            <p class="dialog__bottom--desc">Lorem ipsum dolor sit amet consectetur. Praesentium nisi dolorem nemo, eaque nostrum.</p>
             <div class="flex-space"></div>
             <div class="dialog__cta">
-              <label class="dialog__cta-label" for="count">Count: </label>
-              <button @click="minus" class="dialog__cta-minus">&#45;</button>
-              <input v-model="count" class="dialog__cta-input" type="number" id="count">
-              <button @click="plus" class="dialog__cta-plus">&#43;</button>
+              <div class="dialog__cta-lt">
+                <span class="dialog__cta-label" for="count">Count: </span>
+                <button @click="minus" class="dialog__cta-minus">&#45;</button>
+                <input v-model="count" class="dialog__cta-input" type="number" id="count">
+                <button @click="plus" class="dialog__cta-plus">&#43;</button>
+              </div>
               <div class="flex-space"></div>
-              <div @click="addToCart" class="dialog__cta-btn">Add to Cart</div>
+              <div class="dialog__cta-rb">
+                <button @click="addToCart" class="dialog__cta-btn">Add</button>
+              </div>
+              <!-- <div class="flex-space"></div> -->
             </div>
           </div>
         </div>
@@ -112,6 +117,25 @@ export default {
   overflow: hidden;
   background-color: var(--color-secondary);
 
+  @media only screen and (max-width: $bp-largest) {
+    left: 20%;
+    width: 60%;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    top: 10vh;
+    left: 15%;
+    width: 70%;
+    height: 80vh;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    // top: 10vh;
+    left: 10%;
+    width: 80%;
+    // height: 70vh;
+  }
+
   &__container {
     color: var(--color-primary-dark);
     width: 100%;
@@ -127,9 +151,15 @@ export default {
   &__title {
     font-size: 5rem;
     text-align: center;
-    // margin-bottom: 2rem;
     letter-spacing: 1rem;
-    // border-bottom: .1rem solid var(--color-primary-dark);
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 4rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 3rem;
+    }
   }
 
   &__main {
@@ -152,6 +182,10 @@ export default {
       margin: 0 auto;
       object-fit: contain;
       overflow: hidden;
+
+      @media only screen and (max-width: $bp-medium) {
+        width: 90%;
+      }
     }
   }
 
@@ -163,6 +197,14 @@ export default {
 
     &--desc {
       font-size: 3.5rem;
+
+      @media only screen and (max-width: $bp-medium) {
+        font-size: 3rem;
+      }
+
+      @media only screen and (max-width: $bp-small) {
+        font-size: 2rem;
+      }
     }
   }
 
@@ -171,6 +213,20 @@ export default {
     font-size: 2.5rem;
     color: var(--color-primary-dark);
     display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 2rem;
+    }
+
+    &--lt {
+
+    }
+
+    &--rb {
+
+    }
 
     &-label {
       margin-right: 1rem;
@@ -181,24 +237,31 @@ export default {
       color: var(--color-primary-dark);
       background-color: var(--color-secondary);
       border: none;
-      // border-bottom: .1rem solid var(--color-primary-dark);
       width: 10%;
       outline: none;
       text-align: center;
+
+      @media only screen and (max-width: $bp-medium) {
+        font-size: 2rem;
+      }
     }
 
     &-minus,
     &-plus {
-      background-color: var(--color-secondary);
-      color: var(--color-primary-dark);
-      cursor: pointer;
+      background-color: none;
+      color: currentColor;
       font-family: 'Montserrat';
       font-size: 3rem;
       width: 5%;
+
+      @media only screen and (max-width: $bp-medium) {
+        font-size: 2rem;
+        width: 10%;
+      }
     }
 
     &-btn {
-      cursor: pointer;
+      font-size: inherit;
 
       &::after {
         content: "";
