@@ -10,7 +10,10 @@
 
       <div class="card__top">
         <div v-for="item in order.items" :key="item.name" class="card__products">
-          <div class="card__products--name">{{ item.name }} ---</div>
+          <div class="card__products--name">
+            {{ item.name }}
+            <span class="card__products--name-dash">---</span>
+          </div>
           <div class="card__products--count">
           <span class="card__products--count-times">x</span>
           {{ item.count }}
@@ -76,13 +79,24 @@ export default {
   &__container {
     font-family: 'Montserrat';
     font-size: 3rem;
+    width: 80%;
     max-width: 90rem;
     color: var(--color-primary-dark);
+
+    @media only screen and (max-width: $bp-medium) {
+      width: 85%;
+      font-size: 2.5rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      width: 90%;
+      font-size: 2rem;
+    }
   }
 
   &__title {
     font-family: 'Parisienne';
-    font-size: 5rem;
+    font-size: 1.5em;
     text-align: center;
     border-bottom: .1rem solid var(--color-primary-dark);
     margin: 5rem 0;
@@ -129,14 +143,20 @@ export default {
 
     &--name {
       font-family: 'Parisienne';
-      font-size: 3.5rem;
+      font-size: 1.2em;
       margin-right: 1rem;
+
+      &-dash {
+        @media only screen and (max-width: $bp-small) {
+          display: none;
+        }
+      }
     }
 
     &--count {
 
       &-times {
-        font-size: 2.5rem;
+        font-size: 1em;
       }
     }
   }
@@ -144,7 +164,7 @@ export default {
   &__info {
     display: flex;
     flex-direction: column;
-    font-size: 2.5rem;
+    font-size: .9em;
 
     &--name,
     &--tel,
