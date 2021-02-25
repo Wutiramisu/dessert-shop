@@ -74,6 +74,7 @@ export default {
   @media only screen and (max-width: $bp-small) {
     // flex-direction: column;
     font-size: 1.6rem;
+    margin-bottom: 2rem;
   }
 
   &__img {
@@ -116,18 +117,18 @@ export default {
     display: flex;
     // justify-content: space-between;
 
-    // @media only screen and (max-width: $bp-small) {
-    //   flex-direction: column;
-    // }
+    @media only screen and (max-width: $bp-small) {
+      flex-direction: column;
+    }
   }
 
   &__count {
     width: 60%;
     text-align: center;
 
-    // @media only screen and (max-width: $bp-small) {
-    //   order: 2;
-    // }
+    @media only screen and (max-width: $bp-small) {
+      width: 100%;
+    }
 
     &-input {
       font-family: 'Montserrat';
@@ -160,9 +161,10 @@ export default {
     text-align: center;
     width: 40%;
 
-    // @media only screen and (max-width: $bp-small) {
-    //   order: 3;
-    // }
+    @media only screen and (max-width: $bp-small) {
+      width: 100%;
+      margin-top: 2rem;
+    }
   }
 
   &__delete {

@@ -193,12 +193,16 @@ export default {
 
   &__info {
     width: 70%;
-    margin: 5rem 0 0 0;
+    margin-top: 5rem;
     display: flex;
     flex-direction: column;
 
     @media only screen and (max-width: $bp-large) {
       width: 100%;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      margin-top: 2rem;
     }
 
     &--field {
@@ -246,7 +250,6 @@ export default {
   }
 
   &__login {
-    font-size: 3rem;
     margin: 5rem 0;
 
     &--emphasis {
