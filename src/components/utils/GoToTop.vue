@@ -1,7 +1,12 @@
 <template>
   <div class="scroll-wrap">
     <transition name="fade">
-      <button class="scroll-btn" v-if="isVisible" @click="goToTop">
+      <button
+        class="scroll-btn"
+        :style="{ bottom: iconBottom + 'px' }"
+        v-if="isVisible"
+        @click="goToTop"
+      >
         <i class="fas fa-angle-up"></i>
       </button>
     </transition>
@@ -14,7 +19,12 @@ export default {
   data () {
     return {
       isVisible: false,
-      visibleY: 150
+      visibleY: 150,
+      iconBottom: 20,
+      footerHeigh: 150,
+      clientHeight: null,
+      scrollTop: null,
+      innerHeight: null
     };
   },
   created () {
@@ -23,9 +33,32 @@ export default {
   destroyed () {
     window.removeEventListener('scroll', this.scrollEvent);
   },
+  watch: {
+    scrollTop () {
+      // 距離底部距離 = 全網頁高度 - 捲軸往下捲的距離 - 當前頁面高度
+      const bottomDistance = this.clientHeight - this.scrollTop - this.innerHeight;
+      if (bottomDistance <= this.footerHeigh) {
+        this.iconBottom = this.footerHeigh - bottomDistance + 20;
+      } else if (this.iconBottom > 20) {
+        this.iconBottom = 20;
+      }
+      // console.log(
+      //   `
+      //   距離底部距離: ${bottomDistance} px
+      //   全頁高度: ${this.clientHeight}
+      //   捲軸距離: ${this.scrollTop}
+      //   頁面高度: ${this.innerHeight}
+      //   出現的footer高度: ${this.footerHeigh - bottomDistance} px
+      //   圖示定位: ${this.iconBottom} px
+      //   `);
+    }
+  },
   methods: {
     scrollEvent () {
       this.isVisible = (this.visibleY < window.scrollY);
+      this.clientHeight = document.body.clientHeight;
+      this.scrollTop = document.scrollingElement.scrollTop;
+      this.innerHeight = window.innerHeight;
     },
     goToTop () {
       if (document.scrollingElement.scrollTop === 0) return;
@@ -63,7 +96,7 @@ export default {
   height: 6rem;
   position: fixed;
   right: 4rem;
-  bottom: 17rem;
+  // bottom: 17rem;
   z-index: 100;
   border-radius: 50%;
   background-color: rgba(178, 132, 81, .7);
