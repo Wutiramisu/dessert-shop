@@ -34,7 +34,7 @@ export default {
   bottom: 0;
   width: 100%;
   height: 15rem;
-  background: var(--color-primary-dark) url(../assets/banner-1.png);
+  background: rgba(178, 132, 81, .9) url(../assets/banner-1.png) center center fixed;
 
   display: flex;
   align-items: center;

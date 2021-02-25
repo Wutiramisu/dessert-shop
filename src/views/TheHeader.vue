@@ -61,7 +61,7 @@ export default {
   height: 6vw;
   min-height: 6.5rem;
   max-height: 9rem;
-  background: var(--color-primary-dark) url(../assets/banner-1.png) center center fixed;
+  background: rgba(178, 132, 81, .9) url(../assets/banner-1.png) center center fixed;
 }
 
 .nav {
