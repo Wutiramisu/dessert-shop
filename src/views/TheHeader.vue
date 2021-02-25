@@ -2,10 +2,8 @@
   <header class="header" @click="closeHamburger">
     <nav class="nav">
       <router-link to="/" class="nav__link-home">
-        <img src="@/assets/logo.svg" alt="" class="nav__logo">
+        <img src="@/assets/logo.png" alt="" class="nav__logo">
       </router-link>
-
-      <div class="nav__space"></div>
 
       <label @click.stop class="nav__hamburger--btn" for="ham"><i class="fas fa-bars"></i></label>
       <input v-model="hamburgerToggle" @click.stop="toggleHamburger" class="nav__hamburger" type="checkbox" id="ham">
@@ -63,7 +61,7 @@ export default {
   height: 6vw;
   min-height: 6.5rem;
   max-height: 9rem;
-  background: var(--color-primary-dark) url(../assets/banner-1.png);
+  background: var(--color-primary-dark) url(../assets/banner-1.png) center center fixed;
 }
 
 .nav {
@@ -76,16 +74,15 @@ export default {
   position: relative; //for RWD
 
   display: flex;
+  justify-content: space-between;
 
   @media only screen and (max-width: $bp-small) {
     width: 100%;
   }
 
   &__link-home {
-    width: 13.5vw;
-    min-width: 14rem;
-    max-width: 21rem;
-    padding: .5rem 0;
+    height: 100%;
+    display: block;
 
     @media only screen and (max-width: $bp-small) {
       margin-left: 2rem;
@@ -93,8 +90,10 @@ export default {
   }
 
   &__logo {
+    display: block;
     height: 100%;
-    color: var(--color-secondary);
+    object-fit: contain;
+    overflow: hidden;
   }
 
   &__group {
@@ -107,7 +106,7 @@ export default {
       width: 100%;
       flex-direction: column;
       z-index: 20;
-      background: rgba(178, 132, 81, .9) url(../assets/banner-1.png);
+      background: rgba(178, 132, 81, .9) url(../assets/banner-1.png) center center fixed;
       transition: max-height .2s ease-out;
       overflow: hidden;
       max-height: 0;
@@ -161,10 +160,6 @@ export default {
         margin-right: 2rem;
       }
     }
-  }
-
-  &__space {
-    flex: 1;
   }
 }
 </style>
