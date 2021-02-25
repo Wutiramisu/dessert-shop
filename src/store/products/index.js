@@ -9,7 +9,7 @@ export default {
       },
       {
         category: 'cake',
-        name: 'Chocolate Melaleuca',
+        name: 'Choco Melaleuca',
         img: 'cake-2.jpg',
         price: 20
       },

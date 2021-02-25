@@ -91,6 +91,7 @@ export default {
     height: 100%;
     object-fit: contain;
     overflow: hidden;
+    padding-top: .5rem;
   }
 
   &__group {
