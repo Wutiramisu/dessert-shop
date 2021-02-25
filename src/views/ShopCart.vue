@@ -36,7 +36,7 @@
       </button>
     </div>
     <div v-else class="cart__container">
-      <h2 class="cart__title">Shopping Cart Is Empty</h2>
+      <h2 class="cart__title">Cart Is Empty</h2>
     </div>
   </div>
 </template>
@@ -144,6 +144,7 @@ export default {
       padding-top: 5rem;
       font-size: 2rem;
     }
+
     @media only screen and (max-width: $bp-small) {
       width: 90%;
       padding-top: 5rem;
@@ -153,13 +154,11 @@ export default {
 
   &__title {
     font-family: 'Montserrat';
-    // font-size: 5rem;
     margin-bottom: 5rem;
   }
 
   &__field {
     font-family: 'Montserrat';
-    // font-size: 3rem;
     width: 100%;
     text-align: center;
     margin-bottom: 3rem;
@@ -187,7 +186,6 @@ export default {
 
   &__total {
     letter-spacing: .2rem;
-    // margin-right: 5%;
     align-self: flex-end;
   }
 
@@ -220,7 +218,6 @@ export default {
       font-family: 'Montserrat';
       font-size: 3rem;
       color: var(--color-primary-light);
-      // background: none;
       background: rgba(16, 29, 44, .6);
       border: .1rem solid var(--color-primary-dark);
       border-radius: 1rem;

@@ -3,7 +3,7 @@
     <transition name="fade">
       <button
         class="scroll-btn"
-        :style="{ bottom: iconBottom + 'px' }"
+        :style="{ bottom: dynamicIconBottom + 'px' }"
         v-if="isVisible"
         @click="goToTop"
       >
@@ -20,27 +20,34 @@ export default {
     return {
       isVisible: false,
       visibleY: 150,
-      iconBottom: 20,
+      dynamicIconBottom: 20,
+      initFixedPoistion: 20,
       footerHeigh: 150,
       clientHeight: null,
       scrollTop: null,
-      innerHeight: null
+      innerHeight: null,
+      responseWidth: null
     };
   },
   created () {
     window.addEventListener('scroll', this.scrollEvent);
+    window.addEventListener('resize', this.resizeWidth);
+    this.dynamicIconBottom = window.innerHeight <= 600 ? 0 : 20;
+    this.isVisible = (window.innerHeight <= 600);
+    this.resizeWidth();
   },
   destroyed () {
     window.removeEventListener('scroll', this.scrollEvent);
+    window.removeEventListener('resize', this.resizeWidth);
   },
   watch: {
     scrollTop () {
       // 距離底部距離 = 全網頁高度 - 捲軸往下捲的距離 - 當前頁面高度
       const bottomDistance = this.clientHeight - this.scrollTop - this.innerHeight;
       if (bottomDistance <= this.footerHeigh) {
-        this.iconBottom = this.footerHeigh - bottomDistance + 20;
-      } else if (this.iconBottom > 20) {
-        this.iconBottom = 20;
+        this.dynamicIconBottom = this.footerHeigh - bottomDistance + this.initFixedPoistion;
+      } else if (this.dynamicIconBottom > this.initFixedPoistion) {
+        this.dynamicIconBottom = this.initFixedPoistion;
       }
       // console.log(
       //   `
@@ -49,13 +56,27 @@ export default {
       //   捲軸距離: ${this.scrollTop}
       //   頁面高度: ${this.innerHeight}
       //   出現的footer高度: ${this.footerHeigh - bottomDistance} px
-      //   圖示定位: ${this.iconBottom} px
+      //   圖示定位: ${this.dynamicIconBottom} px
       //   `);
+    },
+    responseWidth (newValue) {
+      if (newValue <= 600) {
+        this.isVisible = true;
+        this.initFixedPoistion = 0;
+        this.dynamicIconBottom = 0;
+      } else {
+        this.initFixedPoistion = 20;
+        this.dynamicIconBottom = 20;
+      }
     }
   },
   methods: {
     scrollEvent () {
-      this.isVisible = (this.visibleY < window.scrollY);
+      if (this.responseWidth <= 600) {
+        this.isVisible = true;
+      } else {
+        this.isVisible = (this.visibleY < window.scrollY);
+      }
       this.clientHeight = document.body.clientHeight;
       this.scrollTop = document.scrollingElement.scrollTop;
       this.innerHeight = window.innerHeight;
@@ -78,6 +99,9 @@ export default {
         window.requestAnimationFrame(step);
       }
       window.requestAnimationFrame(step);
+    },
+    resizeWidth () {
+      this.responseWidth = window.innerWidth;
     }
   }
 };
@@ -96,16 +120,22 @@ export default {
   height: 6rem;
   position: fixed;
   right: 4rem;
-  // bottom: 17rem;
   z-index: 100;
   border-radius: 50%;
   background-color: rgba(178, 132, 81, .7);
   color: var(--color-secondary);
   font-size: 3rem;
 
+  @media only screen and (max-width: $bp-small) {
+    width: 50%;
+    height: 4rem;
+    left: 0;
+    border-radius: 0;
+  }
+
   &:hover {
     background-color: rgba(198, 153, 99, 1);
-    transition: .4s;
+    transition: opacity .4s;
   }
 }
 

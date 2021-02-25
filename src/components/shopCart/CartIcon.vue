@@ -4,7 +4,7 @@
     v-if="!hideIcon && !isEmptyCart"
     class="cart__wrapper"
     :class="{ 'num-change': isChange }"
-    :style="{ bottom: iconBottom + 'px' }"
+    :style="{ bottom: dynamicIconBottom + 'px' }"
   >
     <i class="fas fa-shopping-cart cart__icon"></i>
     <div class="cart__num">{{ cartNum }}</div>
@@ -17,24 +17,33 @@ export default {
     return {
       hideIcon: false,
       isChange: false,
-      iconBottom: 100,
+      dynamicIconBottom: 170,
+      initFixedPoistion: 170,
       footerHeigh: 150,
       clientHeight: null,
       scrollTop: null,
-      innerHeight: null
+      innerHeight: null,
+      responseWidth: null
     };
   },
   created () {
     window.addEventListener('scroll', this.scrollEvent);
+    window.addEventListener('resize', this.resizeWidth);
+    this.dynamicIconBottom = window.innerHeight <= 600 ? 0 : 170;
+    this.resizeWidth();
   },
   destroyed () {
     window.removeEventListener('scroll', this.scrollEvent);
+    window.removeEventListener('resize', this.resizeWidth);
   },
   methods: {
     scrollEvent () {
       this.clientHeight = document.body.clientHeight;
       this.scrollTop = document.scrollingElement.scrollTop;
       this.innerHeight = window.innerHeight;
+    },
+    resizeWidth () {
+      this.responseWidth = window.innerWidth;
     }
   },
   computed: {
@@ -42,11 +51,16 @@ export default {
       return this.$store.getters.cartItems.length;
     },
     isEmptyCart () {
+      if (this.responseWidth <= 600) return false;
       return this.cartNum === 0;
     }
   },
   watch: {
     $route (to) {
+      // if (this.responseWidth <= 600) {
+      //   this.hideIcon = false;
+      //   return;
+      // }
       if (to.path === '/cart' || to.path === '/order') {
         this.hideIcon = true;
       } else {
@@ -62,9 +76,18 @@ export default {
     scrollTop () {
       const bottomDistance = this.clientHeight - this.scrollTop - this.innerHeight;
       if (bottomDistance <= this.footerHeigh) {
-        this.iconBottom = this.footerHeigh - bottomDistance + 100;
-      } else if (this.iconBottom > 100) {
-        this.iconBottom = 100;
+        this.dynamicIconBottom = this.footerHeigh - bottomDistance + this.initFixedPoistion;
+      } else if (this.dynamicIconBottom > this.initFixedPoistion) {
+        this.dynamicIconBottom = this.initFixedPoistion;
+      }
+    },
+    responseWidth (newValue) {
+      if (newValue <= 600) {
+        this.initFixedPoistion = 0;
+        this.dynamicIconBottom = 0;
+      } else {
+        this.initFixedPoistion = 170;
+        this.dynamicIconBottom = 170;
       }
     }
   }
@@ -86,6 +109,14 @@ export default {
     color: var(--color-secondary);
     transition: transform .5s, background-color .5s;
 
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.5rem;
+      width: 50%;
+      height: 4rem;
+      right: 0;
+      border-radius: 0;
+    }
+
     &:hover {
       background-color: rgba(198, 153, 99, 1);
     }
@@ -96,6 +127,12 @@ export default {
     top: 65%;
     left: 48%;
     transform: translate(-50%, -50%);
+    transition: transform .5s;
+
+    @media only screen and (max-width: $bp-small) {
+      top: 65%;
+      left: 50%;
+    }
   }
 
   &__num {
@@ -105,11 +142,19 @@ export default {
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    @media only screen and (max-width: $bp-small) {
+      top: 30%;
+      left: 51%;
+    }
   }
 }
 
 .num-change {
   background: rgb(198, 153, 99) !important;
-  transform: rotateY(90deg);
+
+  @media only screen and (min-width: $bp-small) {
+    transform: rotateY(90deg);
+  }
 }
 </style>

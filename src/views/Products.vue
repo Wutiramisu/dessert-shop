@@ -81,6 +81,7 @@ export default {
   max-width: 140rem;
   margin: 0 auto;
   margin-top: 10rem;
+  // padding-bottom: 35rem;
   display: flex;
 
   @media only screen and (max-width: $bp-large) {
