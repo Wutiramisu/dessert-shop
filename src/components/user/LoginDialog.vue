@@ -111,11 +111,22 @@ export default {
   padding: 2rem;
   overflow: hidden;
   background-color: rgba(16, 29, 44, .9);
-//   background-color: var(--color-secondary);
   font-size: 3rem;
   color: var(--color-primary-dark);
   display: flex;
   align-items: center;
+
+  @media only screen and (max-width: $bp-large) {
+    left: 20vw;
+    width: 60vw;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    left: 10vw;
+    width: 80vw;
+    height: 80vh;
+    max-height: 50rem;
+  }
 }
 
 .form {
@@ -163,6 +174,13 @@ export default {
     align-self: flex-end;
     margin-top: 2rem;
 
+    @media only screen and (max-width: $bp-small) {
+      align-self: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
     &--login,
     &--register {
       font-size: 2rem;
@@ -170,6 +188,10 @@ export default {
       border-radius: 2rem;
       padding: .5rem 2rem;
       font-weight: 700;
+
+      @media only screen and (max-width: $bp-small) {
+        margin-bottom: 2rem;
+      }
 
       &:hover {
         background: var(--color-primary-dark);
@@ -179,6 +201,10 @@ export default {
 
     &--login {
       margin-right: 3rem;
+
+      @media only screen and (max-width: $bp-small) {
+        margin: 0 0 2rem 0;
+      }
     }
   }
 }
