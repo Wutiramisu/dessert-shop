@@ -43,16 +43,7 @@ export default {
 .v-leave-active {
   transition: opacity .2s;
 }
-.v-enter {
+.v-enter, .v-leave-to {
   opacity: 0;
 }
-.v-leave-to {
-  opacity: 0;
-}
-// .fade-enter-active, .fade-leave-active {
-//   transition: opacity .3s;
-// }
-// .fade-enter, .fade-leave-to {
-//   opacity: 0;
-// }
 </style>
