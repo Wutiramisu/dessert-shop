@@ -1,9 +1,9 @@
 <template>
   <header class="header" @click="closeHamburger">
     <nav class="nav">
-      <!-- <router-link to="/" class="nav__link-home">
+      <router-link to="/" class="nav__link-home">
         <img src="@/assets/logo.svg" alt="" class="nav__logo">
-      </router-link> -->
+      </router-link>
 
       <div class="nav__space"></div>
 
@@ -63,7 +63,6 @@ export default {
   height: 6vw;
   min-height: 6.5rem;
   max-height: 9rem;
-  // background: rgba(178, 132, 81, .8);
   background: var(--color-primary-dark) url(../assets/banner-1.png);
 }
 
@@ -88,15 +87,14 @@ export default {
     max-width: 21rem;
     padding: .5rem 0;
 
+    @media only screen and (max-width: $bp-small) {
+      margin-left: 2rem;
+    }
   }
 
   &__logo {
     height: 100%;
     color: var(--color-secondary);
-
-    @media only screen and (max-width: $bp-small) {
-      margin-left: 2rem;
-    }
   }
 
   &__group {
@@ -109,7 +107,6 @@ export default {
       width: 100%;
       flex-direction: column;
       z-index: 20;
-      // background: rgba(178, 132, 81, .8);
       background: rgba(178, 132, 81, .9) url(../assets/banner-1.png);
       transition: max-height .2s ease-out;
       overflow: hidden;
