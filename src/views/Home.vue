@@ -222,20 +222,20 @@ export default {
   color: var(--color-primary-dark);
   font-size: 4rem;
 
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 3rem;
+  }
+
   &__title {
     align-self: center;
     margin-bottom: 3rem;
-
-    @media only screen and (max-width: $bp-small) {
-      font-size: 3rem;
-    }
   }
 
   &__main {
     display: flex;
     justify-content: space-between;
 
-    @media only screen and (max-width: $bp-medium) {
+    @media only screen and (max-width: $bp-small) {
       flex-direction: column;
       align-items: center;
     }
@@ -248,13 +248,12 @@ export default {
     text-align: center;
 
     @media only screen and (max-width: $bp-medium) {
-      width: 50%;
-      height: 50vw;
-      margin-bottom: 3rem;
+      width: 30%;
+      height: 30vw;
     }
 
-    @media only screen and (max-width: $bp-medium) {
-      width: 80%;
+    @media only screen and (max-width: $bp-small) {
+      width: 70%;
       height: 80vw;
       margin-bottom: 5rem;
     }
@@ -282,7 +281,7 @@ export default {
     &-text {
       position: absolute;
       transform: translate(-50%, -50%);
-      width: 60%;
+      width: 90%;
       top: 10%;
       left: 50%;
       border-bottom: .1rem solid var(--color-primary-dark);
@@ -292,7 +291,7 @@ export default {
       }
 
       @media only screen and (max-width: $bp-medium) {
-        font-size: 4rem;
+        font-size: 2.5rem;
       }
 
       @media only screen and (max-width: $bp-small) {

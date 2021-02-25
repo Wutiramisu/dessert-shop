@@ -76,17 +76,14 @@ export default {
   display: flex;
   justify-content: space-between;
 
-  @media only screen and (max-width: $bp-small) {
+  @media only screen and (max-width: $bp-medium) {
     width: 100%;
+    padding: 0 2rem;
   }
 
   &__link-home {
     height: 100%;
     display: block;
-
-    @media only screen and (max-width: $bp-small) {
-      margin-left: 2rem;
-    }
   }
 
   &__logo {
@@ -119,7 +116,7 @@ export default {
       display: flex;
       align-items: center;
 
-      @media only screen and (max-width: $bp-small) {
+      @media only screen and (max-width: $bp-medium) {
         border-top: .2rem solid rgba(255, 255, 255, .1);
       }
 

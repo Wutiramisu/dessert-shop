@@ -39,7 +39,7 @@ export default {
   @media only screen and (max-width: $bp-largest) {
     width: 90%;
   }
-  @media only screen and (max-width: $bp-small) {
+  @media only screen and (max-width: $bp-medium) {
     width: 100%;
   }
 }
