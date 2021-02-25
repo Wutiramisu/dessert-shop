@@ -4,12 +4,14 @@
       <img :src="require(`@/assets/products/${ product.img }`)" alt="" class="item__img">
     </div>
     <div class="item__name">{{ product.name }}</div>
-    <div class="item__count">
-      <button @click="minus" class="item__count-minus">&#45;</button>
-      <input v-model="count" class="item__count-input" type="number">
-      <button @click="plus" class="item__count-plus">&#43;</button>
+    <div class="item__cp--wrapper">
+      <div class="item__count">
+        <button @click="minus" class="item__count-minus">&#45;</button>
+        <input v-model="count" class="item__count-input" type="number">
+        <button @click="plus" class="item__count-plus">&#43;</button>
+      </div>
+      <div class="item__priceSum">${{ priceSum }}</div>
     </div>
-    <div class="item__priceSum">${{ priceSum }}</div>
     <div @click="deleteItem" class="item__delete">&#10761;</div>
   </div>
 </template>
@@ -65,29 +67,71 @@ export default {
   padding-bottom: 2rem;
   margin-bottom: 5rem;
 
+  @media only screen and (max-width: $bp-large) {
+    font-size: 2.5rem;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    // flex-direction: column;
+    font-size: 1.6rem;
+  }
+
   &__img {
     display: block;
     width: 50%;
 
+    @media only screen and (max-width: $bp-large) {
+      width: 70%;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      width: 100%;
+    }
+
     &-wrap {
       width: 20%;
+
+      // @media only screen and (max-width: $bp-small) {
+      //   width: 100%;
+      //   order: 1;
+      // }
     }
   }
 
   &__name {
     font-family: 'Parisienne';
-    font-size: 4rem;
+    font-size: 1.3em;
     flex: 1;
     text-align: center;
+
+    // @media only screen and (max-width: $bp-small) {
+    //   order: 0;
+    // }
+  }
+
+  &__cp--wrapper {
+    // width: 100%;
+    // font-size: inherit;
+    width: 35%;
+    display: flex;
+    // justify-content: space-between;
+
+    // @media only screen and (max-width: $bp-small) {
+    //   flex-direction: column;
+    // }
   }
 
   &__count {
-    width: 20%;
+    width: 60%;
     text-align: center;
+
+    // @media only screen and (max-width: $bp-small) {
+    //   order: 2;
+    // }
 
     &-input {
       font-family: 'Montserrat';
-      font-size: 3rem;
+      font-size: inherit;
       color: var(--color-primary-dark);
       background-color: var(--color-secondary);
       // border: none;
@@ -103,7 +147,7 @@ export default {
       color: var(--color-primary-dark);
       cursor: pointer;
       font-family: 'Montserrat';
-      font-size: 3rem;
+      font-size: inherit;
       width: 20%;
       border: .1rem solid var(--color-primary-dark);
     }
@@ -112,16 +156,24 @@ export default {
   &__priceSum {
     font-family: 'Montserrat';
     font-style: italic;
-    font-size: 3rem;
+    // font-size: 3rem;
     text-align: center;
-    width: 15%;
+    width: 40%;
+
+    // @media only screen and (max-width: $bp-small) {
+    //   order: 3;
+    // }
   }
 
   &__delete {
     cursor: pointer;
     width: 5%;
-    font-size: 3rem;
+    // font-size: 3rem;
     text-align: center;
+
+    // @media only screen and (max-width: $bp-small) {
+    //   order: 4;
+    // }
 
     &:active {
       transform: translateY(.2rem);

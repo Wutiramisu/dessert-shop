@@ -138,17 +138,28 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media only screen and (max-width: $bp-medium) {
+      width: 85%;
+      padding-top: 5rem;
+      font-size: 2rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+      width: 90%;
+      padding-top: 5rem;
+      font-size: 1.6rem;
+    }
   }
 
   &__title {
     font-family: 'Montserrat';
-    font-size: 5rem;
+    // font-size: 5rem;
     margin-bottom: 5rem;
   }
 
   &__field {
     font-family: 'Montserrat';
-    font-size: 3rem;
+    // font-size: 3rem;
     width: 100%;
     text-align: center;
     margin-bottom: 3rem;
@@ -182,9 +193,13 @@ export default {
 
   &__info {
     width: 70%;
-    margin: 5rem 0;
+    margin: 5rem 0 0 0;
     display: flex;
     flex-direction: column;
+
+    @media only screen and (max-width: $bp-large) {
+      width: 100%;
+    }
 
     &--field {
       width: 100%;
