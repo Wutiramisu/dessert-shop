@@ -152,10 +152,6 @@ export default {
       @media only screen and (max-width: $bp-medium) {
       display: block
       }
-
-      @media only screen and (max-width: $bp-small) {
-        margin-right: 2rem;
-      }
     }
   }
 }

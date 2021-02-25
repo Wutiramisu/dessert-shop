@@ -83,6 +83,15 @@ export default {
   margin-top: 10rem;
   display: flex;
 
+  @media only screen and (max-width: $bp-large) {
+    flex-direction: column;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    width: 90%;
+    margin-top: 5rem;
+  }
+
   &__category {
     flex: 1;
     font-family: 'Montserrat';
@@ -91,8 +100,17 @@ export default {
     color: var(--color-primary-dark);
     padding-right: 5rem;
 
+    @media only screen and (max-width: $bp-large) {
+      padding: 0;
+      margin-bottom: 2rem;
+    }
+
     &--title {
       margin-bottom: 2rem;
+
+      @media only screen and (max-width: $bp-large) {
+        text-align: center;
+      }
     }
 
     &--name {
