@@ -28,6 +28,7 @@ export default {
 .container {
   min-height: 100vh;
   background: var(--color-secondary) url(./assets/banner-2.png);
+  background-attachment: fixed;
 }
 
 .main {
