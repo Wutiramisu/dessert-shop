@@ -1,9 +1,9 @@
 <template>
   <header class="header" @click="closeHamburger">
     <nav class="nav">
-      <router-link to="/" class="nav__link-home">
+      <!-- <router-link to="/" class="nav__link-home">
         <img src="@/assets/logo.svg" alt="" class="nav__logo">
-      </router-link>
+      </router-link> -->
 
       <div class="nav__space"></div>
 
