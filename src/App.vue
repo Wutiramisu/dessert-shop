@@ -27,7 +27,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   min-height: 100vh;
-  background: var(--color-secondary) url(./assets/banner-2.png) center center fixed;
+  background: rgb(16, 29, 44) url(./assets/banner-2.png) center center fixed;
 }
 
 .main {
