@@ -250,6 +250,7 @@ export default {
   }
 
   &__login {
+    font-size: inherit;
     margin: 5rem 0;
 
     &--emphasis {
