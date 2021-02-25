@@ -130,10 +130,9 @@ export default {
   }
 
   @media only screen and (max-width: $bp-small) {
-    // top: 10vh;
     left: 10%;
     width: 80%;
-    // height: 70vh;
+    max-height: 55rem;
   }
 
   &__container {
