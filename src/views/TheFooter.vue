@@ -49,6 +49,10 @@ export default {
     display: flex;
     align-items: center;
     margin: 1rem;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 2rem;
+    }
   }
 
   &__phone {
@@ -85,6 +89,7 @@ export default {
   }
 
   &__text {
+    font-size: 2rem;
     margin: 1rem;
   }
 }

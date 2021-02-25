@@ -21,7 +21,7 @@
     <div class="home-container__bottom">
       <section class="about">
         <h2 class="about__title">About Us</h2>
-        <p class="about__content">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor id ex voluptatum molestias? Possimus cupiditate architecto fuga atque excepturi fugiat ullam tenetur tempore amet alias, unde temporibus, repudiandae voluptatibus reiciendis!</p>
+        <p class="about__content">Lorem, ipsum consectetur dolor sit amet adipisicing elit. Dolor id ex voluptatum molestias? Possimus cupiditate architecto fuga atque excepturi fugiat ullam tenetur tempore amet alias, temporibus repudiandae unde,  voluptatibus reiciendis!</p>
       </section>
 
       <section class="product">
@@ -97,11 +97,8 @@ export default {
 }
 
 .slide {
-  margin-bottom: 10rem;
 
   &__img {
-    // height: 50vw;
-    // max-height: 70vh;
     width: 100%;
     display: block;
     object-fit: contain;
@@ -118,10 +115,23 @@ export default {
 }
 
 .about {
-  width: 70%;
+  width: 90%;
   margin: 10rem auto;
   font-size: 4rem;
   color: var(--color-primary-dark);
+
+  @media only screen and (max-width: $bp-large) {
+    width: 100%;
+    margin: 5rem auto;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 3rem;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    font-size: 2.5rem;
+  }
 
   &__title {
     text-align: center;
@@ -133,28 +143,36 @@ export default {
   justify-content: center;
   margin: 10rem auto;
 
+  @media only screen and (max-width: $bp-large) {
+    width: 100%;
+    margin: 5rem auto;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    flex-direction: column;
+    align-items: center;
+  }
+
   &__field {
     width: 33%;
     overflow: hidden;
     position: relative;
     border: .1rem solid var(--color-primary-dark);
 
-    // &:nth-child(odd) {
-    //   border: .1rem solid var(--color-primary-dark);
-    // }
-
-    // &:nth-child(even) {
-    //   border-top: .1rem solid var(--color-primary-dark);
-    //   border-bottom: .1rem solid var(--color-primary-dark);
-    // }
-
-    &:hover .product__img {
-      transform: scale(1.1);
+    @media only screen and (max-width: $bp-small) {
+      width: 80%;
     }
 
-    &:hover .product__img--text {
-      bottom: -20%;
+    @media only screen and (min-width: $bp-small) {
+      &:hover .product__img {
+        transform: scale(1.1);
+      }
+
+      &:hover .product__img--text {
+        bottom: -20%;
+      }
     }
+
   }
 
   &__img {
@@ -190,6 +208,10 @@ export default {
       width: 100%;
       text-align: center;
       transition: .5s;
+
+      @media only screen and (max-width: $bp-small) {
+        bottom: -20%;
+      }
     }
   }
 }
@@ -197,18 +219,26 @@ export default {
 .feature {
   display: flex;
   flex-direction: column;
-  // margin: 10rem auto;
   color: var(--color-primary-dark);
   font-size: 4rem;
 
   &__title {
     align-self: center;
     margin-bottom: 3rem;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 3rem;
+    }
   }
 
   &__main {
     display: flex;
     justify-content: space-between;
+
+    @media only screen and (max-width: $bp-medium) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   &__card {
@@ -217,6 +247,17 @@ export default {
     max-height: 55rem;
     text-align: center;
 
+    @media only screen and (max-width: $bp-medium) {
+      width: 50%;
+      height: 50vw;
+      margin-bottom: 3rem;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      width: 80%;
+      height: 80vw;
+      margin-bottom: 5rem;
+    }
   }
 
   &__img {
@@ -241,11 +282,22 @@ export default {
     &-text {
       position: absolute;
       transform: translate(-50%, -50%);
-      // width: 10vw;
       width: 60%;
       top: 10%;
       left: 50%;
       border-bottom: .1rem solid var(--color-primary-dark);
+
+      @media only screen and (max-width: $bp-large) {
+        font-size: 3rem;
+      }
+
+      @media only screen and (max-width: $bp-medium) {
+        font-size: 4rem;
+      }
+
+      @media only screen and (max-width: $bp-small) {
+        font-size: 3rem;
+      }
     }
   }
 }

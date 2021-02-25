@@ -43,7 +43,6 @@ router.beforeEach((to, from, next) => {
       return next();
     }
     store.commit('openLoginDialog');
-    // console.log('請先登入');
     next(from);
   } else {
     next();

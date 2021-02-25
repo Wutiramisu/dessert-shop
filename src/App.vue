@@ -35,6 +35,13 @@ export default {
   max-width: 140rem;
   margin: 0 auto;
   padding-bottom: 25rem;
+
+  @media only screen and (max-width: $bp-largest) {
+    width: 90%;
+  }
+  @media only screen and (max-width: $bp-small) {
+    width: 100%;
+  }
 }
 
 .v-enter-active {

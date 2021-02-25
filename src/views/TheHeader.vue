@@ -63,6 +63,7 @@ export default {
   height: 6vw;
   min-height: 6.5rem;
   max-height: 9rem;
+  // background: rgba(178, 132, 81, .8);
   background: var(--color-primary-dark) url(../assets/banner-1.png);
 }
 
@@ -73,9 +74,13 @@ export default {
   color: var(--color-secondary);
   margin: 0 auto;
   font-size: 3.5rem;
-  position: relative; //RWD
+  position: relative; //for RWD
 
   display: flex;
+
+  @media only screen and (max-width: $bp-small) {
+    width: 100%;
+  }
 
   &__link-home {
     width: 13.5vw;
@@ -88,18 +93,24 @@ export default {
   &__logo {
     height: 100%;
     color: var(--color-secondary);
+
+    @media only screen and (max-width: $bp-small) {
+      margin-left: 2rem;
+    }
   }
 
   &__group {
     display: flex;
 
-    @media (max-width: 50em) {
+    @media only screen and (max-width: $bp-medium) {
       position: absolute;
       top: 100%;
       right: 0;
+      width: 100%;
       flex-direction: column;
       z-index: 20;
-      background: rgba(178, 132, 81, .8);
+      // background: rgba(178, 132, 81, .8);
+      background: rgba(178, 132, 81, .9) url(../assets/banner-1.png);
       transition: max-height .2s ease-out;
       overflow: hidden;
       max-height: 0;
@@ -111,6 +122,10 @@ export default {
       font-weight: 700;
       display: flex;
       align-items: center;
+
+      @media only screen and (max-width: $bp-small) {
+        border-top: .2rem solid rgba(255, 255, 255, .1);
+      }
 
       &:hover {
         background: rgba(255, 255, 255, .1);
@@ -141,8 +156,12 @@ export default {
       margin-top: 1rem;
       display: none;
 
-      @media (max-width: 50em) {
+      @media only screen and (max-width: $bp-medium) {
       display: block
+      }
+
+      @media only screen and (max-width: $bp-small) {
+        margin-right: 2rem;
       }
     }
   }

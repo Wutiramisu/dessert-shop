@@ -7,5 +7,14 @@ module.exports = {
         return args;
       });
   },
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `
+           @import "@/assets/scss/mediaQuery.scss";
+        `
+      }
+    }
+  },
   publicPath: process.env.NODE_ENV === 'production' ? '/dessert-shop/' : '/'
 };
