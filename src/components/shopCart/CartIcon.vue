@@ -29,7 +29,7 @@ export default {
   created () {
     window.addEventListener('scroll', this.scrollEvent);
     window.addEventListener('resize', this.resizeWidth);
-    this.dynamicIconBottom = window.innerHeight <= 600 ? 0 : 170;
+    this.dynamicIconBottom = window.innerWidth <= 600 ? 0 : 170;
     this.resizeWidth();
   },
   destroyed () {
@@ -57,10 +57,6 @@ export default {
   },
   watch: {
     $route (to) {
-      // if (this.responseWidth <= 600) {
-      //   this.hideIcon = false;
-      //   return;
-      // }
       if (to.path === '/cart' || to.path === '/order') {
         this.hideIcon = true;
       } else {

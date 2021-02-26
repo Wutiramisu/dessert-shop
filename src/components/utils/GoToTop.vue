@@ -32,8 +32,8 @@ export default {
   created () {
     window.addEventListener('scroll', this.scrollEvent);
     window.addEventListener('resize', this.resizeWidth);
-    this.dynamicIconBottom = window.innerHeight <= 600 ? 0 : 20;
-    this.isVisible = (window.innerHeight <= 600);
+    this.dynamicIconBottom = window.innerWidth <= 600 ? 0 : 20;
+    // this.isVisible = (window.innerWidth <= 600);
     this.resizeWidth();
   },
   destroyed () {
@@ -61,7 +61,7 @@ export default {
     },
     responseWidth (newValue) {
       if (newValue <= 600) {
-        this.isVisible = true;
+        // this.isVisible = true;
         this.initFixedPoistion = 0;
         this.dynamicIconBottom = 0;
       } else {
@@ -72,11 +72,12 @@ export default {
   },
   methods: {
     scrollEvent () {
-      if (this.responseWidth <= 600) {
-        this.isVisible = true;
-      } else {
-        this.isVisible = (this.visibleY < window.scrollY);
-      }
+      // if (this.responseWidth <= 600) {
+      //   this.isVisible = true;
+      // } else {
+      //   this.isVisible = (this.visibleY < window.scrollY);
+      // }
+      this.isVisible = (this.visibleY < window.scrollY);
       this.clientHeight = document.body.clientHeight;
       this.scrollTop = document.scrollingElement.scrollTop;
       this.innerHeight = window.innerHeight;
