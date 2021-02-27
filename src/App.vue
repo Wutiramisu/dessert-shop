@@ -6,8 +6,20 @@
     </transition>
     <ProductDialog />
     <LoginDialog />
-    <CartIcon />
-    <GoToTop />
+    <CartIcon
+      :footerHeigh="footerHeigh"
+      :clientHeight="clientHeight"
+      :scrollTop="scrollTop"
+      :innerHeight="innerHeight"
+      :responseWidth="responseWidth"
+    />
+    <GoToTop
+      :footerHeigh="footerHeigh"
+      :clientHeight="clientHeight"
+      :scrollTop="scrollTop"
+      :innerHeight="innerHeight"
+      :responseWidth="responseWidth"
+    />
     <TheFooter />
   </div>
 </template>
@@ -20,7 +32,34 @@ import CartIcon from '@/components/shopCart/CartIcon.vue';
 import ProductDialog from '@/components/product/ProductDialog.vue';
 import LoginDialog from '@/components/user/LoginDialog.vue';
 export default {
-  components: { TheHeader, TheFooter, GoToTop, CartIcon, ProductDialog, LoginDialog }
+  components: { TheHeader, TheFooter, GoToTop, CartIcon, ProductDialog, LoginDialog },
+  data () {
+    return {
+      footerHeigh: 150,
+      clientHeight: null,
+      scrollTop: null,
+      innerHeight: null,
+      responseWidth: null
+    };
+  },
+  created () {
+    window.addEventListener('scroll', this.scrollEvent);
+    window.addEventListener('resize', this.resizeWidth);
+  },
+  mounted () {
+    this.scrollEvent();
+    this.resizeWidth();
+  },
+  methods: {
+    scrollEvent () {
+      this.clientHeight = document.body.clientHeight;
+      this.scrollTop = document.scrollingElement.scrollTop;
+      this.innerHeight = window.innerHeight;
+    },
+    resizeWidth () {
+      this.responseWidth = window.innerWidth;
+    }
+  }
 };
 </script>
 

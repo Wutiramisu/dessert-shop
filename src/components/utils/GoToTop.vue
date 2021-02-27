@@ -16,32 +16,22 @@
 <script>
 export default {
   name: 'ScrollToTop',
+  props: ['footerHeigh', 'clientHeight', 'scrollTop', 'innerHeight', 'responseWidth'],
   data () {
     return {
       isVisible: false,
       visibleY: 150,
       dynamicIconBottom: 20,
-      initFixedPoistion: 20,
-      footerHeigh: 150,
-      clientHeight: null,
-      scrollTop: null,
-      innerHeight: null,
-      responseWidth: null
+      initFixedPoistion: 20
     };
   },
   created () {
-    window.addEventListener('scroll', this.scrollEvent);
-    window.addEventListener('resize', this.resizeWidth);
     this.dynamicIconBottom = window.innerWidth <= 600 ? 0 : 20;
-    // this.isVisible = (window.innerWidth <= 600);
-    this.resizeWidth();
-  },
-  destroyed () {
-    window.removeEventListener('scroll', this.scrollEvent);
-    window.removeEventListener('resize', this.resizeWidth);
   },
   watch: {
     scrollTop () {
+      this.isVisible = (this.visibleY < window.scrollY);
+
       // 距離底部距離 = 全網頁高度 - 捲軸往下捲的距離 - 當前頁面高度
       const bottomDistance = this.clientHeight - this.scrollTop - this.innerHeight;
       if (bottomDistance <= this.footerHeigh) {
@@ -61,7 +51,6 @@ export default {
     },
     responseWidth (newValue) {
       if (newValue <= 600) {
-        // this.isVisible = true;
         this.initFixedPoistion = 0;
         this.dynamicIconBottom = 0;
       } else {
@@ -71,20 +60,9 @@ export default {
     }
   },
   methods: {
-    scrollEvent () {
-      // if (this.responseWidth <= 600) {
-      //   this.isVisible = true;
-      // } else {
-      //   this.isVisible = (this.visibleY < window.scrollY);
-      // }
-      this.isVisible = (this.visibleY < window.scrollY);
-      this.clientHeight = document.body.clientHeight;
-      this.scrollTop = document.scrollingElement.scrollTop;
-      this.innerHeight = window.innerHeight;
-    },
     goToTop () {
-      if (document.scrollingElement.scrollTop === 0) return;
-      const totalScrollDistance = document.scrollingElement.scrollTop;
+      if (this.scrollTop === 0) return;
+      const totalScrollDistance = this.scrollTop;
       let scrollY = totalScrollDistance;
       let oldTimestamp = null;
       function step (newTimestamp) {
@@ -100,9 +78,6 @@ export default {
         window.requestAnimationFrame(step);
       }
       window.requestAnimationFrame(step);
-    },
-    resizeWidth () {
-      this.responseWidth = window.innerWidth;
     }
   }
 };

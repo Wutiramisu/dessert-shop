@@ -3,7 +3,7 @@
     to="/cart"
     v-if="!hideIcon && !isEmptyCart"
     class="cart__wrapper"
-    :class="{ 'num-change': isChange }"
+    :class="{ 'num-changed': isChange }"
     :style="{ bottom: dynamicIconBottom + 'px' }"
   >
     <i class="fas fa-shopping-cart cart__icon"></i>
@@ -13,38 +13,18 @@
 
 <script>
 export default {
+  name: 'ShopCart',
+  props: ['footerHeigh', 'clientHeight', 'scrollTop', 'innerHeight', 'responseWidth'],
   data () {
     return {
       hideIcon: false,
       isChange: false,
       dynamicIconBottom: 170,
-      initFixedPoistion: 170,
-      footerHeigh: 150,
-      clientHeight: null,
-      scrollTop: null,
-      innerHeight: null,
-      responseWidth: null
+      initFixedPoistion: 170
     };
   },
   created () {
-    window.addEventListener('scroll', this.scrollEvent);
-    window.addEventListener('resize', this.resizeWidth);
     this.dynamicIconBottom = window.innerWidth <= 600 ? 0 : 170;
-    this.resizeWidth();
-  },
-  destroyed () {
-    window.removeEventListener('scroll', this.scrollEvent);
-    window.removeEventListener('resize', this.resizeWidth);
-  },
-  methods: {
-    scrollEvent () {
-      this.clientHeight = document.body.clientHeight;
-      this.scrollTop = document.scrollingElement.scrollTop;
-      this.innerHeight = window.innerHeight;
-    },
-    resizeWidth () {
-      this.responseWidth = window.innerWidth;
-    }
   },
   computed: {
     cartNum () {
@@ -146,7 +126,7 @@ export default {
   }
 }
 
-.num-change {
+.num-changed {
   background: rgb(198, 153, 99) !important;
 
   @media only screen and (min-width: $bp-small) {
