@@ -25,7 +25,7 @@ export default {
   props: ['product'],
   methods: {
     showDialog () {
-      this.$store.dispatch('openDialog', this.product);
+      this.$store.commit('openDialog', this.product);
     },
     addToCart () {
       const payload = {

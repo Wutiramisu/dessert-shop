@@ -76,16 +76,8 @@ export default {
       state.dialogState = true;
       state.dialogProduct = payload;
     },
-    closeDialog (state, payload) {
+    closeDialog (state) {
       state.dialogState = false;
-    }
-  },
-  actions: {
-    openDialog (context, payload) {
-      context.commit('openDialog', payload);
-    },
-    closeDialog (context, payload) {
-      context.commit('closeDialog');
     }
   },
   getters: {

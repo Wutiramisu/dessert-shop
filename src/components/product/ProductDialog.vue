@@ -30,7 +30,6 @@
               <div class="dialog__cta-rb">
                 <button @click="addToCart" class="dialog__cta-btn">Add</button>
               </div>
-              <!-- <div class="flex-space"></div> -->
             </div>
           </div>
         </div>
@@ -58,13 +57,13 @@ export default {
   methods: {
     close () {
       this.count = 1;
-      this.$store.dispatch('closeDialog');
+      this.$store.commit('closeDialog');
     },
     minus () {
-      this.count -= 1;
+      this.count--;
     },
     plus () {
-      this.count += 1;
+      this.count++;
     },
     addToCart () {
       const payload = {
@@ -79,7 +78,7 @@ export default {
     }
   },
   watch: {
-    count: function (newValue, oldValue) {
+    count: function (newValue) {
       if (newValue <= 0) {
         this.count = 1;
       } else if (newValue >= 10) {
@@ -217,14 +216,6 @@ export default {
 
     @media only screen and (max-width: $bp-medium) {
       font-size: 2rem;
-    }
-
-    &--lt {
-
-    }
-
-    &--rb {
-
     }
 
     &-label {
