@@ -1,8 +1,6 @@
-# Dessert Shop
+# Dessert Shop ([Demo](https://wutiramisu.github.io/dessert-shop/))
 使用Vue.js打造的甜點商店。使用者可將喜歡的甜點加入購物車，註冊或登入後可以建立訂單、查詢訂單
 > 後端佈署於heroku，初次使用需等待伺服器啟動
-
-[Demo](https://wutiramisu.github.io/dessert-shop/)
 
 ## 測試帳號
 * username: user
@@ -15,8 +13,8 @@
 
 ## 使用技術
 * Vue.js
-* vue-router
 * Vuex
+* vue-router
 * SCSS
 * RWD Design
 * 第三方套件使用：vue-carousel
