@@ -2,16 +2,16 @@
 使用Vue.js打造的甜點商店。使用者可將喜歡的甜點加入購物車，註冊或登入後可以建立訂單、查詢訂單
 > 後端佈署於heroku，初次使用需等待伺服器啟動
 
-## [Demo](https://wutiramisu.github.io/dessert-shop/)
+[Demo](https://wutiramisu.github.io/dessert-shop/)
 
 ## 測試帳號
-username: user
-password: user
+* username: user
+* password: user
 
 ## 功能介紹
-* 會員註冊/登入
-* 購物車數量增減、刪除
-* 建立、查詢訂單
+1. 會員註冊/登入
+2. 購物車數量增減、刪除
+3. 建立、查詢訂單
 
 ## 使用技術
 * Vue.js
