@@ -140,6 +140,7 @@ export default {
     height: 100%;
     padding: 1.5%;
     border: .15rem solid var(--color-primary-dark);
+    overflow: auto;
 
     display: flex;
     flex-direction: column;
